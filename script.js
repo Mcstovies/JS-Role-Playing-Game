@@ -1,6 +1,6 @@
 let xp = 0;
 let health = 100;
-let gold = 50;
+let gold = 250;
 let currentWeaponIndex = 0;
 let fighting;
 let monsterHealth;
@@ -100,7 +100,7 @@ function buyHealth() {
 }
 
 function buyWeapon() {
-  if (currentWeaponIndex < 3){
+  if (currentWeaponIndex < weapons.length){
 if (gold >= 30){
   gold -= 30;
   currentWeaponIndex++;
