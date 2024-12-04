@@ -200,6 +200,8 @@ function attack() {
     } else {
       defeatMonster();
     }
+  } if(Math.random() <= .1){
+    
   }
 }
 
