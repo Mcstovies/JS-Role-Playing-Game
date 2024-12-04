@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Linking the external stylesheet -->
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>RPG - Dragon Hunter</title>
 
     </script>
 </head>
 <body>
+    <!-- This div contains the entire game layout -->
     <div id="game">
+        <!-- Stats section where player info is displayed -->
         <div id="stats">
+            <!-- XP, Health, and Gold stats for the player -->
         <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
         <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
         <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
         </div>
+        <!-- Controls section with buttons to navigate the game -->
         <div id="controls">
+            <!-- Button that takes to to the shop -->
             <button id="button1">Go to store</button>
+            <!-- Button to explore the cave -->
             <button id="button2">Go to cave</button>
+            <!-- Button to fight the dragon -->
             <button id="button3">Fight dragon</button>
         </div>
+        <!-- Section for showing monster stats -->
         <div id="monsterStats"></div>
+        <!-- Main text area for game narration and instructions -->
         <span class="stat">Monster Name: <strong><span id="monsterName"></span></strong></span>
         <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
         <div id="text">Welcome to Dragon Hunter. 
@@ -28,7 +38,7 @@
             You are in the town square. 
             Where do you want to go? Use the buttons above. </div>
     </div>
-
+<!-- Linking the external JS file for logic -->
 <script src="script.js"></script>
 </body>
 </html>
