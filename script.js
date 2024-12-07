@@ -1,11 +1,13 @@
-let xp = 0;
-let health = 100;
-let gold = 50;
-let currentWeaponIndex = 0;
-let fighting;
-let monsterHealth;
-let inventory = ["stick"];
+// Initialise plater stats
+let xp = 0; // Player's XP
+let health = 100; // Player's health
+let gold = 50; // PLayer's gold
+let currentWeaponIndex = 0; // Index to tracks which weapon the player has
+let fighting; // Variable to track which monster the player is fighting
+let monsterHealth; // Current health of the monster being fought
+let inventory = ["stick"]; // Player's inventory starts with a stick
 
+// Get references to DOM elements for interactivity 
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -17,31 +19,22 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+// Define available weapons
 const weapons = [
-  {
-    name: "stick",
-    power: 5,
-  },
-  {
-    name: "dagger",
-    power: 30,
-  },
-  {
-    name: "claw hammer",
-    power: 50,
-  },
-  {
-    name: "sword",
-    power: 100,
-  }
+  {name: "stick",power: 5,},
+  {name: "dagger",power: 30,},
+  {name: "claw hammer",power: 50,},
+  {name: "sword",power: 100,}
 ];
 
+// Define monsters
 const monsters = [
   {name: "slime", level: 2, health: 15},
   {name: "fanged beast", level: 8, health: 60},
   {name: "dragon", level: 20, health: 300}
 ]
 
+// Define different locations  and what happens there
 const locations = [
   {
     name: "town square",
@@ -93,13 +86,14 @@ const locations = [
   },
 ];
 
-// Initialise buttons
+// Button functions
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
+// FUnction to update the game state based on the location
 function update(location) {
-  monsterStats.style.display = "none";
+  monsterStats.style.display = "none"; // Hide monster stats unless fighting
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -109,20 +103,23 @@ function update(location) {
   text.innerHTML = location.text;
 }
 
+// Function to go to the town square
 function goTown() {
 update(locations);
 }
 
+// Function to go to the store
 function goStore() {
 update(locations[1]);
 }
 
+// Function to go to the cave
 function goCave() {
     update(locations[2]);
 }
 
 
-
+// Function to buy health
 function buyHealth() {
   if (gold >= 10){
   gold -= 10;
@@ -134,6 +131,7 @@ function buyHealth() {
   }
 }
 
+// Function to buy a weapon
 function buyWeapon() {
   if (currentWeaponIndex < weapons.length - 1) {
     if (gold >= 30) {
@@ -154,6 +152,7 @@ function buyWeapon() {
   }
 }
 
+// Function to sell a weapon
 function sellWeapon() {
   if (inventory.length > 1) {
     gold += 15;
@@ -166,19 +165,23 @@ function sellWeapon() {
   }
 }
 
+// Function to fight a slime
 function fightSlime() {
   fighting = 0;
   goFight();
 }
 
+// Function to fight a beast
 function fightBeast() {
   fighting = 1;
 }
 
+// Function to fight the dragon
 function fightDragon() {
   fighting = 2;
 }
 
+// Function to initiate a fight
 function goFight() {
 update(locations[3]);
 monsterHealth = monsters[fighting].health;
@@ -187,6 +190,7 @@ monsterName.innerText = monsters[fighting].name;
 monsterHealthText.innerText = monsterHealth; 
 }
 
+// Funtion for attacking a monster
 function attack() {
   text.innerText = "The " + monsters[fighting].name + " attacks.";
   text.innerText += " You attack it with your " + weapons[currentWeaponIndex].name + ".";
